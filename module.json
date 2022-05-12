@@ -1,0 +1,13 @@
+{
+    "name": "SSOClient",
+    "alias": "ssoclient",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\SSOClient\\Providers\\SSOClientServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
