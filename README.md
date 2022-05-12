@@ -20,10 +20,8 @@ At `composer.json`, setup autoload config
 {
   "autoload": {
     "psr-4": {
-      "App\\": "app/",
+      \\ other folders/namespaces...
       "Modules\\": "Modules/",
-      "Database\\Factories\\": "database/factories/",
-      "Database\\Seeders\\": "database/seeders/"
   }
 }
 ```
