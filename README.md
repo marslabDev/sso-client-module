@@ -25,7 +25,11 @@ At `composer.json`, setup autoload config
   }
 }
 ```
-Don't forget to run `composer dump-autoload` afterwards.
+Don't forget to run
+```
+composer dump-autoload
+```
+
 
 
 ### Link Private Repos
@@ -36,9 +40,9 @@ At `composer.json`, add the following config:
         \\ other package...
         "marslabdev/sso-client-module": "dev-main"
     },
-~
-~
-~
+
+...
+
 "repositories": [
         {
             "type": "vcs",
@@ -46,7 +50,10 @@ At `composer.json`, add the following config:
         }
     ],
 ```
-Run `composer update`.
+Last but not least
+```
+composer update
+```
 
 P.S: If this is your first time installation. GitHub may ask you to create OAuth Token to bypass the API rate limit from calling the repos. Follow the instructions given by GitHub by click the link to generate your own Personal Access Token.
 
