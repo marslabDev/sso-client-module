@@ -50,5 +50,6 @@ At `composer.json`, add the following config:
 ```
 Run `composer update`.
 
+P.S: If this is your first time installation. GitHub may ask you to create OAuth Token to bypass the API rate limit from calling the repos. Follow the instructions given by GitHub by click the link to generate your own Personal Access Token.
 
 
