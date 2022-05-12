@@ -16,7 +16,7 @@ Publish the package's configuration file by running:
 php artisan vendor:publish --provider="Nwidart\Modules\LaravelModulesServiceProvider"
 ```
 At `composer.json`, setup autoload config
-```json
+```javascript
 {
   "autoload": {
     "psr-4": {
