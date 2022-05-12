@@ -18,8 +18,5 @@
         "psr-4": {
             "Modules\\SSOClient\\": ""
         }
-    },
-    "require": {
-        "joshbrw/laravel-module-installer": "^2.0"
     }
 }

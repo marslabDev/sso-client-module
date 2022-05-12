@@ -7,5 +7,4 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Modules\\SSOClient\\' => array($baseDir . '/'),
-    'Joshbrw\\LaravelModuleInstaller\\' => array($vendorDir . '/joshbrw/laravel-module-installer/src'),
 );
