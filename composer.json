@@ -1,23 +1,25 @@
 {
-    "name": "nwidart/ssoclient",
-    "description": "",
+    "name": "marslabdev/sso-client-module",
+    "description": "Marslab SSO Client Module",
+    "type": "laravel-module",
     "authors": [
         {
-            "name": "Nicolas Widart",
-            "email": "n.widart@gmail.com"
+            "name": "Jason Tam",
+            "email": "jason@marslab.com.my"
         }
     ],
     "extra": {
         "laravel": {
             "providers": [],
-            "aliases": {
-
-            }
+            "aliases": {}
         }
     },
     "autoload": {
         "psr-4": {
             "Modules\\SSOClient\\": ""
         }
+    },
+    "require": {
+        "joshbrw/laravel-module-installer": "^2.0"
     }
 }

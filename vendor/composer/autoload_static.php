@@ -11,12 +11,20 @@ class ComposerStaticInit2b7ee5ada863635dfe9e7e5fbc6df061
         array (
             'Modules\\SSOClient\\' => 18,
         ),
+        'J' => 
+        array (
+            'Joshbrw\\LaravelModuleInstaller\\' => 31,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
         'Modules\\SSOClient\\' => 
         array (
             0 => __DIR__ . '/../..' . '/',
+        ),
+        'Joshbrw\\LaravelModuleInstaller\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/joshbrw/laravel-module-installer/src',
         ),
     );
 
