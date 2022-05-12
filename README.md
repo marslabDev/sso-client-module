@@ -27,7 +27,7 @@ At `composer.json`, setup autoload config
   }
 }
 ```
-Don't forget to run composer dump-autoload afterwards.
+Don't forget to run `composer dump-autoload` afterwards.
 
 
 ### Link Private Repos
