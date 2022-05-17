@@ -1,11 +1,11 @@
 {
-    "name": "SSOClient",
+    "name": "SsoClient",
     "alias": "ssoclient",
     "description": "",
     "keywords": [],
     "priority": 0,
     "providers": [
-        "Modules\\SSOClient\\Providers\\SSOClientServiceProvider"
+        "Modules\\SsoClient\\Providers\\SSOClientServiceProvider"
     ],
     "aliases": {},
     "files": [],

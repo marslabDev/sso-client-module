@@ -14,13 +14,12 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
-Route::prefix('ssoclient')->group(function () {
-    Route::get('/', 'SSOClientController@index');
-});
 
-Auth::routes(['register' => false]);
+Route::get('userVerification/{token}', 'UserVerificationController@approve')->name('userVerification');
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
+Auth::routes();
+
+Route::group(['prefix' => 'sso', 'as' => 'sso.', 'namespace' => 'Admin', 'middleware' => ['auth', '2fa']], function () {
     // Permissions
     Route::delete('permissions/destroy', 'PermissionsController@massDestroy')->name('permissions.massDestroy');
     Route::resource('permissions', 'PermissionsController');
@@ -32,4 +31,29 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Users
     Route::delete('users/destroy', 'UsersController@massDestroy')->name('users.massDestroy');
     Route::resource('users', 'UsersController');
+
+    // User Alerts
+    Route::delete('user-alerts/destroy', 'UserAlertsController@massDestroy')->name('user-alerts.massDestroy');
+    Route::get('user-alerts/read', 'UserAlertsController@read');
+    Route::resource('user-alerts', 'UserAlertsController', ['except' => ['edit', 'update']]);
+});
+
+Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth', '2fa']], function () {
+    // Change password
+    if (file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php'))) {
+        Route::get('password', 'ChangePasswordController@edit')->name('password.edit');
+        Route::post('password', 'ChangePasswordController@update')->name('password.update');
+        Route::post('profile', 'ChangePasswordController@updateProfile')->name('password.updateProfile');
+        Route::post('profile/destroy', 'ChangePasswordController@destroy')->name('password.destroyProfile');
+        Route::post('profile/two-factor', 'ChangePasswordController@toggleTwoFactor')->name('password.toggleTwoFactor');
+    }
+});
+
+Route::group(['namespace' => 'Auth', 'middleware' => ['auth', '2fa']], function () {
+    // Two Factor Authentication
+    if (file_exists(app_path('Http/Controllers/Auth/TwoFactorController.php'))) {
+        Route::get('two-factor', 'TwoFactorController@show')->name('twoFactor.show');
+        Route::post('two-factor', 'TwoFactorController@check')->name('twoFactor.check');
+        Route::get('two-factor/resend', 'TwoFactorController@resend')->name('twoFactor.resend');
+    }
 });

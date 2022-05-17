@@ -1,8 +1,8 @@
 <?php
 
-namespace Modules\SSOClient\Http\Controllers\Auth;
+namespace Modules\SsoClient\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
+use Modules\SsoClient\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 
 class ForgotPasswordController extends Controller

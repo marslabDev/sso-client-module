@@ -1,10 +1,12 @@
 <?php
 
-namespace Modules\SSOClient\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\UpdatePasswordRequest;
-use App\Http\Requests\UpdateProfileRequest;
+namespace Modules\SsoClient\Http\Controllers\Auth;
+
+
+use Modules\SsoClient\Http\Controllers\Controller;
+use Modules\SsoClient\Http\Requests\UpdatePasswordRequest;
+use Modules\SsoClient\Http\Requests\UpdateProfileRequest;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -45,5 +47,22 @@ class ChangePasswordController extends Controller
         $user->delete();
 
         return redirect()->route('login')->with('message', __('global.delete_account_success'));
+    }
+
+    public function toggleTwoFactor(Request $request)
+    {
+        $user = auth()->user();
+
+        if ($user->two_factor) {
+            $message = __('global.two_factor.disabled');
+        } else {
+            $message = __('global.two_factor.enabled');
+        }
+
+        $user->two_factor = !$user->two_factor;
+
+        $user->save();
+
+        return redirect()->route('profile.password.edit')->with('message', $message);
     }
 }

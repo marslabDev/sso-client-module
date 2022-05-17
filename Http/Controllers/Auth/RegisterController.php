@@ -1,9 +1,9 @@
 <?php
 
-namespace Modules\SSOClient\Http\Controllers\Auth;
+namespace Modules\SsoClient\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use Modules\SSOClient\Entities\User;
+use Modules\SsoClient\Http\Controllers\Controller;
+use Modules\SsoClient\Entities\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;

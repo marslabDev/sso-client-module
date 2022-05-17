@@ -1,10 +1,12 @@
 <?php
 
-namespace Modules\SSOClient\Http\Controllers\Auth;
+namespace Modules\SsoClient\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
+use Modules\SsoClient\Http\Controllers\Controller;
+use Modules\SsoClient\Notifications\TwoFactorCodeNotification;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -30,11 +32,17 @@ class LoginController extends Controller
 
     /**
      * Create a new controller instance.
-     *
-     * @return void
      */
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    protected function authenticated(Request $request, $user)
+    {
+        if ($user->two_factor) {
+            $user->generateTwoFactorCode();
+            $user->notify(new TwoFactorCodeNotification());
+        }
     }
 }

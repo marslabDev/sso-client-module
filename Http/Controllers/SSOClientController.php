@@ -1,10 +1,10 @@
 <?php
 
-namespace Modules\SSOClient\Http\Controllers;
+namespace Modules\SsoClient\Http\Controllers;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
+use Modules\SsoClient\Http\Controllers\Controller;
 
 class SSOClientController extends Controller
 {

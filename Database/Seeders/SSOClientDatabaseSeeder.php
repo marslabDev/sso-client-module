@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\SSOClient\Database\Seeders;
+namespace Modules\SsoClient\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
@@ -16,6 +16,8 @@ class SSOClientDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call("OthersTableSeeder");
+        $this->call([
+            //
+        ]);
     }
 }

@@ -1,26 +1,69 @@
 <?php
 
-namespace Modules\SSOClient\Http\Controllers\Admin;
+namespace Modules\SsoClient\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MassDestroyRoleRequest;
-use App\Http\Requests\StoreRoleRequest;
-use App\Http\Requests\UpdateRoleRequest;
-use Modules\SSOClient\Entities\Permission;
-use Modules\SSOClient\Entities\Role;
+use Modules\SsoClient\Http\Requests\MassDestroyRoleRequest;
+use Modules\SsoClient\Http\Requests\StoreRoleRequest;
+use Modules\SsoClient\Http\Requests\UpdateRoleRequest;
+use Modules\SsoClient\Entities\Permission;
+use Modules\SsoClient\Entities\Role;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Yajra\DataTables\Facades\DataTables;
 
 class RolesController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         abort_if(Gate::denies('role_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $roles = Role::with(['permissions'])->get();
+        if ($request->ajax()) {
+            $query = Role::with(['permissions'])->select(sprintf('%s.*', (new Role())->table));
+            $table = Datatables::of($query);
 
-        return view('admin.roles.index', compact('roles'));
+            $table->addColumn('placeholder', '&nbsp;');
+            $table->addColumn('actions', '&nbsp;');
+
+            $table->editColumn('actions', function ($row) {
+                $viewGate = 'role_show';
+                $editGate = 'role_edit';
+                $deleteGate = 'role_delete';
+                $crudRoutePart = 'roles';
+
+                return view('ssoclient::partials.datatablesActions', compact(
+                    'viewGate',
+                    'editGate',
+                    'deleteGate',
+                    'crudRoutePart',
+                    'row'
+                ));
+            });
+
+            $table->editColumn('id', function ($row) {
+                return $row->id ? $row->id : '';
+            });
+            $table->editColumn('title', function ($row) {
+                return $row->title ? $row->title : '';
+            });
+            $table->editColumn('permissions', function ($row) {
+                $labels = [];
+                foreach ($row->permissions as $permission) {
+                    $labels[] = sprintf('<span class="label label-info label-many">%s</span>', $permission->title);
+                }
+
+                return implode(' ', $labels);
+            });
+
+            $table->rawColumns(['actions', 'placeholder', 'permissions']);
+
+            return $table->make(true);
+        }
+
+        $permissions = Permission::get();
+
+        return view('ssoclient::sso.roles.index', compact('permissions'));
     }
 
     public function create()
@@ -29,7 +72,7 @@ class RolesController extends Controller
 
         $permissions = Permission::pluck('title', 'id');
 
-        return view('admin.roles.create', compact('permissions'));
+        return view('ssoclient::sso.roles.create', compact('permissions'));
     }
 
     public function store(StoreRoleRequest $request)
@@ -37,7 +80,7 @@ class RolesController extends Controller
         $role = Role::create($request->all());
         $role->permissions()->sync($request->input('permissions', []));
 
-        return redirect()->route('admin.roles.index');
+        return redirect()->route('sso.roles.index');
     }
 
     public function edit(Role $role)
@@ -48,7 +91,7 @@ class RolesController extends Controller
 
         $role->load('permissions');
 
-        return view('admin.roles.edit', compact('permissions', 'role'));
+        return view('ssoclient::sso.roles.edit', compact('permissions', 'role'));
     }
 
     public function update(UpdateRoleRequest $request, Role $role)
@@ -56,7 +99,7 @@ class RolesController extends Controller
         $role->update($request->all());
         $role->permissions()->sync($request->input('permissions', []));
 
-        return redirect()->route('admin.roles.index');
+        return redirect()->route('sso.roles.index');
     }
 
     public function show(Role $role)
@@ -65,7 +108,7 @@ class RolesController extends Controller
 
         $role->load('permissions');
 
-        return view('admin.roles.show', compact('role'));
+        return view('ssoclient::sso.roles.show', compact('role'));
     }
 
     public function destroy(Role $role)

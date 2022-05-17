@@ -1,8 +1,9 @@
 <?php
 
-namespace Modules\SSOClient\Entities;
+namespace Modules\SsoClient\Entities;
 
 use \DateTimeInterface;
+use App\Traits\Auditable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,10 +11,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Role extends Model
 {
     use SoftDeletes;
+    use Auditable;
     use HasFactory;
 
-    public $table = 'roles';
     protected $connection = 'sso_db';
+
+    public $table = 'roles';
 
     protected $dates = [
         'created_at',
