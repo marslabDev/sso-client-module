@@ -17,7 +17,7 @@ class ChangePasswordController extends Controller
     {
         abort_if(Gate::denies('profile_password_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('auth.passwords.edit');
+        return view('ssoclient::auth.passwords.edit');
     }
 
     public function update(UpdatePasswordRequest $request)

@@ -38,6 +38,11 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    public function showLoginForm()
+    {
+        return view('ssoclient::auth.login');
+    }
+
     protected function authenticated(Request $request, $user)
     {
         if ($user->two_factor) {

@@ -19,7 +19,7 @@ class TwoFactorController extends Controller
             '403 Forbidden'
         );
 
-        return view('auth.twoFactor');
+        return view('ssoclient::auth.twoFactor');
     }
 
     public function check(CheckTwoFactorRequest $request)
