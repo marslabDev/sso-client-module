@@ -21,7 +21,7 @@ class MassDestroyRoleRequest extends FormRequest
     {
         return [
             'ids'   => 'required|array',
-            'ids.*' => 'exists:roles,id',
+            'ids.*' => 'exists:sso_db.roles,id',
         ];
     }
 }

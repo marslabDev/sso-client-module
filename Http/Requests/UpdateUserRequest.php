@@ -23,7 +23,7 @@ class UpdateUserRequest extends FormRequest
             ],
             'email' => [
                 'required',
-                'unique:users,email,' . request()->route('user')->id,
+                'unique:sso_db.users,email,' . request()->route('user')->id,
             ],
             'roles.*' => [
                 'integer',

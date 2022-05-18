@@ -23,7 +23,7 @@ class StoreUserRequest extends FormRequest
             ],
             'email' => [
                 'required',
-                'unique:users',
+                'unique:sso_db.users',
             ],
             'password' => [
                 'required',

@@ -20,7 +20,7 @@ class MassDestroyUserRequest extends FormRequest
     {
         return [
             'ids'   => 'required|array',
-            'ids.*' => 'exists:users,id',
+            'ids.*' => 'exists:sso_db.users,id',
         ];
     }
 }

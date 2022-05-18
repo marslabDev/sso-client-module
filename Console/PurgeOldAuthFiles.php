@@ -134,6 +134,8 @@ class PurgeOldAuthFiles extends Command
         $update_role = $requests_path . '/UpdateRoleRequest.php';
         $update_user_alert = $requests_path . '/UpdateUserAlertRequest.php';
         $update_user = $requests_path . '/UpdateUserRequest.php';
+        $update_profile = $requests_path . '/UpdateProfileRequest.php';
+        $update_password = $requests_path . '/UpdatePasswordRequest.php';
         $store_permission = $requests_path . '/StorePermissionRequest.php';
         $store_role = $requests_path . '/StoreRoleRequest.php';
         $store_user_alert = $requests_path . '/StoreUserAlertRequest.php';
@@ -148,6 +150,8 @@ class PurgeOldAuthFiles extends Command
             $update_role,
             $update_user,
             $update_user_alert,
+            $update_password,
+            $update_profile,
             $store_permission,
             $store_role,
             $store_user,

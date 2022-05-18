@@ -4,7 +4,7 @@ namespace Modules\SsoClient\Entities;
 
 use \DateTimeInterface;
 use Modules\SsoClient\Notifications\VerifyUserNotification;
-use App\Traits\Auditable;
+use Modules\SsoClient\Traits\Auditable;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Notifications\ResetPassword;

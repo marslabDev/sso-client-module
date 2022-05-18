@@ -21,7 +21,7 @@ class MassDestroyUserAlertRequest extends FormRequest
     {
         return [
             'ids'   => 'required|array',
-            'ids.*' => 'exists:user_alerts,id',
+            'ids.*' => 'exists:sso_db.user_alerts,id',
         ];
     }
 }

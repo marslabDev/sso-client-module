@@ -3,8 +3,8 @@
 namespace Modules\SsoClient\Entities;
 
 use \DateTimeInterface;
-use App\Traits\Auditable;
-use App\Traits\MultiTenantModelTrait;
+use Modules\SsoClient\Traits\Auditable;
+use Modules\SsoClient\Traits\MultiTenantModelTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;

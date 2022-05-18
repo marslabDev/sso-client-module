@@ -20,7 +20,7 @@ class MassDestroyPermissionRequest extends FormRequest
     {
         return [
             'ids'   => 'required|array',
-            'ids.*' => 'exists:permissions,id',
+            'ids.*' => 'exists:sso_db.permissions,id',
         ];
     }
 }
