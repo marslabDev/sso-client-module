@@ -33,7 +33,7 @@ class UserAlertsController extends Controller
                 $deleteGate = 'user_alert_delete';
                 $crudRoutePart = 'user-alerts';
 
-                return view('partials.datatablesActions', compact(
+                return view('ssoclient::partials.datatablesActions', compact(
                     'viewGate',
                     'editGate',
                     'deleteGate',
