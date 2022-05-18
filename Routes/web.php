@@ -35,12 +35,12 @@ Route::group(['prefix' => 'sso', 'as' => 'sso.', 'namespace' => 'Admin', 'middle
     // User Alerts
     Route::delete('user-alerts/destroy', 'UserAlertsController@massDestroy')->name('user-alerts.massDestroy');
     Route::get('user-alerts/read', 'UserAlertsController@read');
-    Route::resource('user-alerts', 'UserAlertsController');
+    Route::resource('user-alerts', 'UserAlertsController')->except(['edit', 'update']);
 });
 
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth', '2fa']], function () {
     // Change password
-    if (file_exists(module_path('SsoClient','Http/Controllers/Auth/ChangePasswordController.php'))) {
+    if (file_exists(module_path('SsoClient', 'Http/Controllers/Auth/ChangePasswordController.php'))) {
         Route::get('password', 'ChangePasswordController@edit')->name('password.edit');
         Route::post('password', 'ChangePasswordController@update')->name('password.update');
         Route::post('profile', 'ChangePasswordController@updateProfile')->name('password.updateProfile');
@@ -51,7 +51,7 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 
 
 Route::group(['namespace' => 'Auth', 'middleware' => ['auth', '2fa']], function () {
     // Two Factor Authentication
-    if (file_exists(module_path('SsoClient','Http/Controllers/Auth/TwoFactorController.php'))) {
+    if (file_exists(module_path('SsoClient', 'Http/Controllers/Auth/TwoFactorController.php'))) {
         Route::get('two-factor', 'TwoFactorController@show')->name('twoFactor.show');
         Route::post('two-factor', 'TwoFactorController@check')->name('twoFactor.check');
         Route::get('two-factor/resend', 'TwoFactorController@resend')->name('twoFactor.resend');
