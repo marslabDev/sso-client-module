@@ -35,7 +35,7 @@ Route::group(['prefix' => 'sso', 'as' => 'sso.', 'namespace' => 'Admin', 'middle
     // User Alerts
     Route::delete('user-alerts/destroy', 'UserAlertsController@massDestroy')->name('user-alerts.massDestroy');
     Route::get('user-alerts/read', 'UserAlertsController@read');
-    Route::resource('user-alerts', 'UserAlertsController', ['except' => ['edit', 'update']]);
+    Route::resource('user-alerts', 'UserAlertsController')->except(['edit', 'update']);
 });
 
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth', '2fa']], function () {
