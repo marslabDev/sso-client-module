@@ -1,0 +1,22 @@
+{
+    "name": "marslabdev/sso-client-module",
+    "description": "Marslab SSO Client Module",
+    "type": "laravel-module",
+    "authors": [
+        {
+            "name": "Jason Tam",
+            "email": "jason@marslab.com.my"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {}
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\SsoClient\\": ""
+        }
+    }
+}
