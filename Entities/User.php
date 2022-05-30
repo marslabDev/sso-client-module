@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
+use Modules\SsoClient\Entities\Role;
 
 class User extends Authenticatable
 {
@@ -164,5 +165,17 @@ class User extends Authenticatable
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
+    }
+
+    /** Static Methods */
+
+    public function getHasRoleAttribute($role)
+    {
+        return auth()->user()->roles->contains(Role::where('title', $role)->first());
+    }
+
+    public static function getWithRoleAttribute($role)
+    {
+        return User::roles()->wherePivot('role_id', '=', Role::where('title', $role)->first()->id)->get();
     }
 }
