@@ -19,6 +19,8 @@ Route::get('userVerification/{token}', 'UserVerificationController@approve')->na
 
 Auth::routes();
 
+Route::get('welcome', 'WelcomeController@index')->middleware(['auth', '2fa']);
+
 Route::group(['prefix' => 'sso', 'as' => 'sso.', 'namespace' => 'Admin', 'middleware' => ['auth', '2fa']], function () {
     // Permissions
     Route::delete('permissions/destroy', 'PermissionsController@massDestroy')->name('permissions.massDestroy');
