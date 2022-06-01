@@ -6,12 +6,10 @@ use Illuminate\Http\JsonResponse;
 use Modules\SsoClient\Http\Controllers\Controller;
 use Modules\SsoClient\Notifications\TwoFactorCodeNotification;
 use App\Providers\RouteServiceProvider;
-use Exception;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
-use Symfony\Component\ErrorHandler\Error\FatalError;
 
 class LoginController extends Controller
 {
@@ -58,16 +56,16 @@ class LoginController extends Controller
     {
         $sso_api = env('SSO_API_URL', null);
         if ($sso_api == null) {
-            throw new Exception('SSO_API_URL is not defined');
+            throw new \Exception('SSO_API_URL is not defined');
         }
 
         if ($this->guard()->attempt($this->credentials($request), $request->filled('remember'))) {
             $response = Http::post($sso_api . '/api/token/login', $this->credentials($request));
             if (!$response->ok()) {
-                throw new Exception($response->json());
+                throw new \Exception($response->json());
             }
             if (!Storage::put(md5($request->input('email')), $response->json('bearer_token'))) {
-                throw new Exception('Storing bearer token failed');
+                throw new \Exception('Storing bearer token failed');
             };
             return true;
         }
@@ -93,7 +91,7 @@ class LoginController extends Controller
     {
         $sso_api = env('SSO_API_URL', null);
         if ($sso_api == null) {
-            throw new Exception('SSO_API_URL is not defined');
+            throw new \Exception('SSO_API_URL is not defined');
         }
 
         $response = Http::post($sso_api . '/api/token/logout', $request->user()->only('email'));
