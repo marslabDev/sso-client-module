@@ -18,6 +18,11 @@ class VerifyBearerToken
      */
     public function handle(Request $request, Closure $next)
     {
+        $sso_api = env('SSO_API_URL', null);
+        if ($sso_api == null) {
+            throw new \Exception('SSO_API_URL is not defined');
+        }
+        
         $token = $request->bearerToken();
         $email = $request->header('X-VRDRUM-USER');
 
@@ -30,7 +35,7 @@ class VerifyBearerToken
             return response()->json(['error' => 'Not Found'], 404);
         }
 
-        $response = Http::withToken($token)->get('http://localhost:8000/api/v1/users/' . $user->id);
+        $response = Http::withToken($token)->get($sso_api . '/api/v1/users/' . $user->id);
         if (!$response->ok()) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
