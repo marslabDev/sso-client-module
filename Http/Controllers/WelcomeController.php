@@ -14,7 +14,7 @@ class WelcomeController extends Controller
     public function index()
     {
         if (auth()->user()->roles->count() == 1) {
-            dd(auth()->user()->roles->count());
+            return redirect(auth()->user()->roles->redirect_url);
         }
 
         return view('ssoclient::welcome', [
