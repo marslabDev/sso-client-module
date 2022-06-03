@@ -13,7 +13,12 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-        if (auth()->user()->roles->count() == 1) {
+        $current_host = $_SERVER['SERVER_NAME'] ?? $_SERVER['HTTP_HOST']; //$request->session()->get('_previous')['url'];
+        if(isset($current_host) && stripos(json_encode(['localhost', '127.0.0.1', '127.0.0.0']),$current_host) !== false) {
+            // skip local redirect
+            $split_url = explode('/',auth()->user()->roles->first()->redirect_url);
+            return redirect($split_url[count($split_url) - 1]);
+        } else if (auth()->user()->roles->count() == 1) {
             return redirect(auth()->user()->roles->first()->redirect_url);
         }
 
