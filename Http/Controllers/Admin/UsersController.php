@@ -52,6 +52,10 @@ class UsersController extends Controller
                 return $row->email ? $row->email : '';
             });
 
+            $table->editColumn('referral_code', function ($row) {
+                return $row->referral_code ? $row->referral_code : '';
+            });
+
             $table->editColumn('approved', function ($row) {
                 return '<input type="checkbox" disabled ' . ($row->approved ? 'checked' : null) . '>';
             });

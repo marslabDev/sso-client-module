@@ -15,6 +15,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 use Modules\SsoClient\Entities\Role;
+use Modules\SsoClient\Traits\ReferralCode;
 
 class User extends Authenticatable
 {
@@ -22,6 +23,7 @@ class User extends Authenticatable
     use Notifiable;
     use Auditable;
     use HasFactory;
+    use ReferralCode;
 
     protected $connection = 'sso_db';
 
@@ -57,6 +59,7 @@ class User extends Authenticatable
         'updated_at',
         'deleted_at',
         'two_factor_expires_at',
+        'referral_code',
     ];
 
     public function __construct(array $attributes = [])

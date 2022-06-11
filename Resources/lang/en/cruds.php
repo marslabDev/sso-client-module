@@ -49,6 +49,8 @@ return [
             'name_helper'                  => ' ',
             'email'                        => 'Email',
             'email_helper'                 => ' ',
+            'referral_code'                => 'Referral code',
+            'referral_code_helper'         => ' ',
             'email_verified_at'            => 'Email verified at',
             'email_verified_at_helper'     => ' ',
             'password'                     => 'Password',
