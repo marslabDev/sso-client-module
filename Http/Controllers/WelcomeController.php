@@ -14,7 +14,7 @@ class WelcomeController extends Controller
     public function index()
     {
         $current_host = $_SERVER['SERVER_NAME'] ?? $_SERVER['HTTP_HOST']; //$request->session()->get('_previous')['url'];
-        if(isset($current_host) && stripos(json_encode(['localhost', '127.0.0.1', '127.0.0.0']),$current_host) !== false) {
+        if(auth()->user()->roles->count() == 1 && isset($current_host) && stripos(json_encode(['localhost', '127.0.0.1', '127.0.0.0']),$current_host) !== false) {
             // skip local redirect
             $split_url = explode('://',auth()->user()->roles->first()->redirect_url);
             if(count($split_url) > 1) {
