@@ -2,11 +2,9 @@
 @section('content')
 <div class="row justify-content-center">
     <div class="col-md-6">
-        <div class="card mx-4">
+        <div class="card mx-4 login_card">
             <div class="card-body p-4">
-                <h1>{{ trans('panel.site_title') }}</h1>
-
-                <p class="text-muted">{{ trans('global.reset_password') }}</p>
+                <p class="text-xl mb-3 font-medium">{{ trans('global.reset_password') }}</p>
 
                 @if(session('status'))
                     <div class="alert alert-success" role="alert">

@@ -1,12 +1,11 @@
 @extends('layouts.app')
 @section('content')
+
 <div class="row justify-content-center">
     <div class="col-md-6">
-        <div class="card mx-4">
+        <div class="card mx-4 login_card">
             <div class="card-body p-4">
-                <h1>{{ trans('panel.site_title') }}</h1>
-
-                <p class="text-muted">{{ trans('global.login') }}</p>
+                <p class="text-xl mb-3 font-medium">MLM {{ trans('global.login') }}</p>
 
                 @if(session('message'))
                     <div class="alert alert-info" role="alert">
@@ -16,7 +15,6 @@
 
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
-
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text">
@@ -64,11 +62,11 @@
                         </div>
                         <div class="col-6 text-right">
                             @if(Route::has('password.request'))
-                                <a class="btn btn-link px-0" href="{{ route('password.request') }}">
+                                <a class="btn btn-link px-0 login_btn" href="{{ route('password.request') }}">
                                     {{ trans('global.forgot_password') }}
                                 </a><br>
                             @endif
-                            <a class="btn btn-link px-0" href="{{ route('register') }}">
+                            <a class="btn btn-link px-0 login_btn" href="{{ route('register') }}">
                                 {{ trans('global.register') }}
                             </a>
                         </div>

@@ -3,15 +3,12 @@
 
 <div class="row justify-content-center">
     <div class="col-md-6">
-
-        <div class="card mx-4">
+        <div class="card mx-4 login_card">
             <div class="card-body p-4">
-
                 <form method="POST" action="{{ route('register') }}">
                     {{ csrf_field() }}
-
-                    <h1>{{ trans('panel.site_title') }}</h1>
-                    <p class="text-muted">{{ trans('global.register') }}</p>
+                    
+                    <p class="text-xl mb-3 font-medium">MLM {{ trans('global.register') }}</p>
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
