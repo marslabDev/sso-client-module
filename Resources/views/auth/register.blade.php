@@ -3,7 +3,7 @@
 
 <div class="row justify-content-center">
     <div class="col-md-6">
-        <div class="card mx-4 login_card">
+        <div class="card mx-4 px-2 pb-2 login_card">
             <div class="card-body p-4">
                 <form method="POST" action="{{ route('register') }}">
                     {{ csrf_field() }}
@@ -64,6 +64,11 @@
                     <button class="btn btn-block btn-primary">
                         {{ trans('global.register') }}
                     </button>
+
+                    <div class="text-center mt-3">
+                        <a class="btn btn-secondary w-full" href="{{ route('login') }}"> {{ trans('global.login') }}
+                        </a>
+                    </div>
                 </form>
 
             </div>

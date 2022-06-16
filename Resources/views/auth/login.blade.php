@@ -3,7 +3,7 @@
 
 <div class="row justify-content-center">
     <div class="col-md-6">
-        <div class="card mx-4 login_card">
+        <div class="card mx-4 px-2 login_card">
             <div class="card-body p-4">
                 <p class="text-xl mb-3 font-medium">MLM {{ trans('global.login') }}</p>
 
@@ -45,31 +45,31 @@
                         @endif
                     </div>
 
-                    <div class="input-group mb-4">
-                        <div class="form-check checkbox">
-                            <input class="form-check-input" name="remember" type="checkbox" id="remember" style="vertical-align: middle;" />
-                            <label class="form-check-label" for="remember" style="vertical-align: middle;">
-                                {{ trans('global.remember_me') }}
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-6">
-                            <button type="submit" class="btn btn-primary px-4">
-                                {{ trans('global.login') }}
-                            </button>
+                    <div class="row mt-4">
+                        <div class="col-6 input-group mb-4">
+                            <div class="form-check checkbox">
+                                <input class="form-check-input" name="remember" type="checkbox" id="remember" style="vertical-align: middle;" />
+                                <label class="form-check-label mt-1" for="remember" style="vertical-align: middle;">
+                                    {{ trans('global.remember_me') }}
+                                </label>
+                            </div>
                         </div>
                         <div class="col-6 text-right">
                             @if(Route::has('password.request'))
-                                <a class="btn btn-link px-0 login_btn" href="{{ route('password.request') }}">
+                                <a class="btn btn-link px-0 login_btn font-medium" href="{{ route('password.request') }}">
                                     {{ trans('global.forgot_password') }}
                                 </a><br>
                             @endif
-                            <a class="btn btn-link px-0 login_btn" href="{{ route('register') }}">
-                                {{ trans('global.register') }}
-                            </a>
                         </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-block btn-primary">
+                        {{ trans('global.login') }}
+                    </button>
+                    
+                    <div class="text-center mt-3">
+                        <a class="btn btn-secondary w-full" href="{{ route('register') }}"> {{ trans('global.register') }}
+                        </a>
                     </div>
                 </form>
             </div>
