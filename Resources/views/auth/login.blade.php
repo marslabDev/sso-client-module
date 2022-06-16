@@ -2,10 +2,10 @@
 @section('content')
 
 <div class="row justify-content-center">
-    <div class="col-md-6">
-        <div class="card mx-4 px-2 login_card">
-            <div class="card-body p-4">
-                <p class="text-xl mb-3 font-medium">MLM {{ trans('global.login') }}</p>
+    <div class="col-md-6 mobile_card">
+        <div class="card mx-5 px-2 login_card mobile_card">
+            <div class="card-body px-4 py-4 mobile_body">
+                <p class="text-xl mb-3 font-medium">{{ trans('panel.site_title') }} {{ trans('global.login') }} </p>
 
                 @if(session('message'))
                     <div class="alert alert-info" role="alert">
@@ -45,8 +45,28 @@
                         @endif
                     </div>
 
-                    <div class="row mt-4">
-                        <div class="col-6 input-group mb-4">
+                    <div class="mobile_pass">
+                        <div class="row mt-4">
+                            <div class="col-6 input-group mb-4">
+                                <div class="form-check checkbox">
+                                    <input class="form-check-input" name="remember" type="checkbox" id="remember" style="vertical-align: middle;" />
+                                    <label class="form-check-label mt-1" for="remember" style="vertical-align: middle;">
+                                        {{ trans('global.remember_me') }}
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-6 text-right">
+                                @if(Route::has('password.request'))
+                                    <a class="btn btn-link px-0 login_btn font-medium" href="{{ route('password.request') }}">
+                                        {{ trans('global.forgot_password') }}
+                                    </a><br>
+                                @endif
+                            </div>
+                        </div>
+                    </div>    
+                    {{--  --}}
+                    <div class="web_pass">
+                        <div class="col-lg-10 input-group mb-4">
                             <div class="form-check checkbox">
                                 <input class="form-check-input" name="remember" type="checkbox" id="remember" style="vertical-align: middle;" />
                                 <label class="form-check-label mt-1" for="remember" style="vertical-align: middle;">
@@ -54,7 +74,7 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="col-6 text-right">
+                        <div class="col-lg-10 text-center">
                             @if(Route::has('password.request'))
                                 <a class="btn btn-link px-0 login_btn font-medium" href="{{ route('password.request') }}">
                                     {{ trans('global.forgot_password') }}
@@ -62,7 +82,7 @@
                             @endif
                         </div>
                     </div>
-
+                    {{--  --}}
                     <button type="submit" class="btn btn-block btn-primary">
                         {{ trans('global.login') }}
                     </button>

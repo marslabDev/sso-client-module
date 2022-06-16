@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content')
 <div class="row justify-content-center">
-    <div class="col-md-6">
-        <div class="card mx-4 px-2 pb-3 login_card">
-            <div class="card-body p-4">
+    <div class="col-md-6 mobile_card">
+        <div class="card mx-5 px-2 pb-3 login_card mobile_card">
+            <div class="card-body p-4 mobile_body">
                 <p class="text-xl mb-3 font-medium">{{ trans('global.reset_password') }}</p>
 
                 @if(session('status'))

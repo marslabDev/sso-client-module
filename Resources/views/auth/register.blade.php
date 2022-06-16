@@ -2,13 +2,13 @@
 @section('content')
 
 <div class="row justify-content-center">
-    <div class="col-md-6">
-        <div class="card mx-4 px-2 pb-2 login_card">
-            <div class="card-body p-4">
+    <div class="col-md-6 mobile_card">
+        <div class="card mx-5 px-2 pb-2 login_card mobile_card">
+            <div class="card-body px-4 py-4 mobile_body">
                 <form method="POST" action="{{ route('register') }}">
                     {{ csrf_field() }}
                     
-                    <p class="text-xl mb-3 font-medium">MLM {{ trans('global.register') }}</p>
+                    <p class="text-xl mb-3 font-medium">{{ trans('panel.site_title') }} {{ trans('global.register') }}</p>
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
@@ -66,7 +66,7 @@
                     </button>
 
                     <div class="text-center mt-3">
-                        <a class="btn btn-secondary w-full" href="{{ route('login') }}"> {{ trans('global.login') }}
+                        <a class="btn btn-secondary w-full" href="{{ route('login') }}"> {{ trans('global.signin') }}
                         </a>
                     </div>
                 </form>
