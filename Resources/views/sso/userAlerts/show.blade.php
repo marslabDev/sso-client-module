@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="card">
-    <div class="card-header">
+    <div class="card-header font-semibold text-lg">
         {{ trans('global.show') }} {{ trans('ssoclient::cruds.userAlert.title') }}
     </div>
 

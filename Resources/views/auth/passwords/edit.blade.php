@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-md-6">
         <div class="card">
-            <div class="card-header">
+            <div class="card-header font-semibold text-lg">
                 {{ trans('global.my_profile') }}
             </div>
 
@@ -40,7 +40,7 @@
     </div>
     <div class="col-md-6">
         <div class="card">
-            <div class="card-header">
+            <div class="card-header font-semibold text-lg">
                 {{ trans('global.change_password') }}
             </div>
 
@@ -73,7 +73,7 @@
 <div class="row">
     <div class="col-md-6">
         <div class="card">
-            <div class="card-header">
+            <div class="card-header font-semibold text-lg">
                 {{ trans('global.delete_account') }}
             </div>
 
@@ -93,7 +93,7 @@
     @if(Route::has('profile.password.toggleTwoFactor'))
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header font-semibold text-lg">
                     {{ trans('global.two_factor.title') }}
                 </div>
 

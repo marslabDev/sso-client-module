@@ -3,14 +3,14 @@
 @can('user_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route('sso.users.create') }}">
+            <a class="btn btn-success add_condition" href="{{ route('sso.users.create') }}">
                 {{ trans('global.add') }} {{ trans('ssoclient::cruds.user.title_singular') }}
             </a>
         </div>
     </div>
 @endcan
 <div class="card">
-    <div class="card-header">
+    <div class="card-header font-semibold text-lg">
         {{ trans('ssoclient::cruds.user.title_singular') }} {{ trans('global.list') }}
     </div>
 

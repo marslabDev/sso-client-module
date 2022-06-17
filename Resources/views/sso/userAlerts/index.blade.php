@@ -10,7 +10,7 @@
     </div>
 @endcan
 <div class="card">
-    <div class="card-header">
+    <div class="card-header font-semibold text-lg">
         {{ trans('ssoclient::cruds.userAlert.title_singular') }} {{ trans('global.list') }}
     </div>
 
