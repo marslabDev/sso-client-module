@@ -64,7 +64,6 @@
                             </div>
                         </div>
                     </div>    
-                    {{--  --}}
                     <div class="web_pass">
                         <div class="col-lg-10 input-group mb-4">
                             <div class="form-check checkbox">
@@ -82,7 +81,6 @@
                             @endif
                         </div>
                     </div>
-                    {{--  --}}
                     <button type="submit" class="btn btn-block btn-primary">
                         {{ trans('global.login') }}
                     </button>

@@ -8,11 +8,10 @@
 
        {{-- Laravel Mix - CSS File --}}
        {{-- <link rel="stylesheet" href="{{ mix('css/ssoclient.css') }}"> --}}
-
     </head>
+
     <body>
         @yield('content')
-
         {{-- Laravel Mix - JS File --}}
         {{-- <script src="{{ mix('js/ssoclient.js') }}"></script> --}}
     </body>
