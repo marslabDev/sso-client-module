@@ -65,7 +65,7 @@
                         {{ trans('global.register') }}
                     </button>
 
-                    <div class="text-center mt-1">
+                    <div class="text-center mt-1 register_top">
                         <a class="btn btn-secondary w-full" href="{{ route('login') }}"> {{ trans('global.signin') }}
                         </a>
                     </div>
