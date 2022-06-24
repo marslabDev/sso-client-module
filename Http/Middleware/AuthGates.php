@@ -10,10 +10,9 @@ class AuthGates
 {
     public function handle($request, Closure $next)
     {
-        if (auth()->check()) { //$user = auth()->user();
+         if (!auth()->check()) { //(!$user = auth()->user();)
             return $next($request);
         }
-
         $roles            = Role::with('permissions')->get();
         $permissionsArray = [];
 
