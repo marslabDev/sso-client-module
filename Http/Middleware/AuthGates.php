@@ -10,9 +10,7 @@ class AuthGates
 {
     public function handle($request, Closure $next)
     {
-        $user = auth()->user();
-
-        if (!$user) {
+        if (auth()->check()) { //$user = auth()->user();
             return $next($request);
         }
 
