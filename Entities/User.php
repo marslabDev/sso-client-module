@@ -177,7 +177,7 @@ class User extends Authenticatable
      public function hasRole($role_name)
      {
          foreach ($this->roles as $role){
-             if ($role->role_name == $role_name)
+             if ($role->title == $role_name)
                  return true;
           }
          return false;
