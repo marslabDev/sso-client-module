@@ -169,7 +169,19 @@ class User extends Authenticatable
     {
         return $date->format('Y-m-d H:i:s');
     }
-
+    /**
+     * Check if this user belongs to a role
+     *
+     * @return bool
+     */
+     public function hasRole($role_name)
+     {
+         foreach ($this->roles as $role){
+             if ($role->role_name == $role_name)
+                 return true;
+          }
+         return false;
+     }
     /** Static Methods */
 
     public function getHasRoleAttribute($role)
