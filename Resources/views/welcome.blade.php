@@ -1,17 +1,17 @@
 @extends('layouts.master')
 @section('content')
 <div class="c-wrapper">
-    <header class="c-header c-header-fixed px-3">
-        <!-- <button class="c-header-toggler c-class-toggler d-lg-none mfe-auto" type="button" data-target="#sidebar"
+    <!-- <header class="c-header c-header-fixed px-3">
+        <button class="c-header-toggler c-class-toggler d-lg-none mfe-auto" type="button" data-target="#sidebar"
             data-class="c-sidebar-show">
             <i class="fas fa-fw fa-bars"></i>
-        </button> -->
+        </button>
 
         <a class="c-header-brand d-lg-none" href="#">{{ trans('panel.site_title') }}</a>
 
-        <!-- <button class="c-header-toggler mfs-3 d-md-down-none" type="button" responsive="true">
+        <button class="c-header-toggler mfs-3 d-md-down-none" type="button" responsive="true">
             <i class="fas fa-fw fa-bars"></i>
-        </button> -->
+        </button>
 
         <ul class="c-header-nav ml-auto">
             @if(count(config('panel.available_languages', [])) > 1)
@@ -31,7 +31,7 @@
 
             {{-- @include('ssoclient::partials.notification') --}}
         </ul>
-    </header>
+    </header> -->
 
     <div class="c-body">
         <main class="c-main">
@@ -53,7 +53,7 @@
                 </div>
                 @endif
 
-                <div class="card">
+                <div class="card" style="opacity: 0.9;">
                     <div class="card-header">
                         {{ trans('cruds.welcome.title_singular') }}
                     </div>
