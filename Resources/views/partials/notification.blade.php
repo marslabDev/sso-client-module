@@ -13,16 +13,14 @@
             @if(count($alerts = \Auth::user()->userUserAlerts()->withPivot('read')->limit(10)->orderBy('created_at',
             'ASC')->get()->reverse()) > 0)
             @foreach($alerts as $alert)
-            <div class="dropdown-item">
+            <div class="dropdown-item {{ $alert->pivot->read ? 'font-weight-bold' : '' }}">
+                @if($alert->alert_link)
                 <a href="{{ $alert->alert_link }}" rel="noopener noreferrer">
-                    @if($alert->pivot->read === 0)
-                    <strong>
-                        @endif
-                        {{ $alert->alert_text }}
-                        @if($alert->pivot->read === 0)
-                    </strong>
-                    @endif
+                    {{ $alert->alert_text }}
                 </a>
+                @elseif
+                {{ $alert->alert_text }}
+                @endif
             </div>
             @endforeach
             @else
@@ -33,3 +31,17 @@
         </div>
     </li>
 </ul>
+@section('scripts')
+@parent
+<script>
+    $(document).ready(function () {
+        $(".notifications-menu").on('click', function () {
+            if (!$(this).hasClass('open')) {
+                $('.notifications-menu .label-warning').hide();
+                $('.notifications-menu .badge-warning').hide();
+                $.get("{{ route('sso.user-alerts.read') }}");
+            }
+        });
+    });
+</script>
+@endsection
