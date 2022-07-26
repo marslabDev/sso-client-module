@@ -18,7 +18,7 @@
                 <a href="{{ $alert->alert_link }}" rel="noopener noreferrer">
                     {{ $alert->alert_text }}
                 </a>
-                @elseif
+                @else
                 {{ $alert->alert_text }}
                 @endif
             </div>
