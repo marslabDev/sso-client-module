@@ -13,7 +13,7 @@
             @if(count($alerts = \Auth::user()->userUserAlerts()->withPivot('read')->limit(10)->orderBy('created_at',
             'ASC')->get()->reverse()) > 0)
             @foreach($alerts as $alert)
-            <div class="dropdown-item {{ $alert->pivot->read ? 'font-weight-bold' : '' }}">
+            <div class="dropdown-item {{ $alert->pivot->read === 0 ? 'font-weight-bold' : '' }}">
                 @if($alert->alert_link)
                 <a href="{{ $alert->alert_link }}" rel="noopener noreferrer">
                     {{ $alert->alert_text }}
