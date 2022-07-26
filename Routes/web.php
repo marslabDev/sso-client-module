@@ -36,7 +36,7 @@ Route::group(['prefix' => 'sso', 'as' => 'sso.', 'namespace' => 'Admin', 'middle
 
     // User Alerts
     Route::delete('user-alerts/destroy', 'UserAlertsController@massDestroy')->name('user-alerts.massDestroy');
-    Route::get('user-alerts/read', 'UserAlertsController@read');
+    Route::get('user-alerts/read', 'UserAlertsController@read')->name('user-alerts.read');
     Route::resource('user-alerts', 'UserAlertsController')->except(['edit', 'update']);
 });
 
