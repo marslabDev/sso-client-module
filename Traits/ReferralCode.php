@@ -18,7 +18,7 @@ trait ReferralCode
     protected static function generateReferralCode($id)
     {
         $code = '';
-        $hex = substr(strtoupper(dechex(time())), 4);
+        $hex = substr(strtoupper(dechex(microtime(true) * rand(10, 999))), 0, 4);
         $code = $id . '-' . $hex;
         return $code;
     }
