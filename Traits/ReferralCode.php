@@ -9,9 +9,9 @@ trait ReferralCode
 {
     public static function bootReferralCode()
     {
-        static::created(function (Model $model) {
+        static::creating(function (Model $model) {
             $model->referral_code = self::generateReferralCode($model->id);
-            $model->save();
+//             $model->save();
         });
     }
 
