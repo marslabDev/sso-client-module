@@ -136,7 +136,7 @@ return [
     'change_notifications_field_1_label'   => '发邮件通知用户',
     'change_notifications_field_2_label'   => '进入CRUD时',
     'my_profile'                           => '个人资料',
-    'my_team'                              => 'My team',
+    'my_team'                              => '我的队伍',
     'change_password'                      => '修改密码',
     'delete_account'                       => '删除账号',
     'delete_account_warning'               => '输入您的电子邮件地址以确认您要删除帐户。\n 此操作是不可逆。',
