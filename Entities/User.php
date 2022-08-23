@@ -60,6 +60,8 @@ class User extends Authenticatable
         'deleted_at',
         'two_factor_expires_at',
         'referral_code',
+        'refer_by',
+        'profile',
     ];
 
     public function __construct(array $attributes = [])
@@ -154,6 +156,12 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Role::class);
     }
+    
+    public function refer()
+    {
+        return $this->belongsTo($this, 'refer_by');
+    }
+
 
     public function getTwoFactorExpiresAtAttribute($value)
     {
