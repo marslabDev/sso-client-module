@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Modules\SsoClient\Entities\User;
+use Illuminate\Support\Facades\Cache;
 
 class VerifyBearerToken
 {
