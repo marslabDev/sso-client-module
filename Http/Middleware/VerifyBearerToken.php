@@ -35,10 +35,11 @@ class VerifyBearerToken
         if (!$user) {
             return response()->json(['error' => 'Not Found'], 404);
         }
-        $response = Cache::remember('verifyToken_'.$user->id, 900, function () use ($token, $sso_api, $user) {
+        $response = Cache::remember('verifyToken_'.$$token, 900, function () use ($token, $sso_api, $user) {
             return Http::withToken($token)->get($sso_api . '/api/v1/users/' . $user->id);
         });
         if (!$response->ok()) {
+            Cache::forget('verifyToken_'.$token);
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
