@@ -37,7 +37,15 @@ class VerifyBearerToken
                     'Request-Timeout' => $request->header('Request-Timeout'),
                 ])->get($sso_api . '/api/validate-token');
         }
-        $responseMap = (array) json_decode($response?->body());
+        try {
+            $responseMap = (array) json_decode($response?->body());
+        } catch (\Throwable $th) {
+            $response = Http::withToken($token)->withHeaders([
+                'X-VRDRUM-USER' => $request->header('X-VRDRUM-USER'),
+                'Request-Timeout' => $request->header('Request-Timeout'),
+            ])->get($sso_api . '/api/validate-token');
+            $responseMap = (array) json_decode($response?->body());
+        }
         if (!$response?->ok()) {
             if (Cache::has('verifyToken_'.$token)) {
                 Cache::forget('verifyToken_'.$token);
