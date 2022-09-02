@@ -54,7 +54,7 @@ class VerifyBearerToken
             return response()->json(['error' => $message], 401);
         } else if (empty($responseMap['data'])) {
             return response()->json(['error' => 'Not Found'], 404);
-        } else ($response?->ok()) {
+        } else if ($response?->ok()) {
             Cache::remember('verifyToken_'.$token, 900, function () use ($response) {
                return $response;
             });
