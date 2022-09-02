@@ -35,10 +35,11 @@ class VerifyBearerToken
                 'Request-Timeout' => $request->header('Request-Timeout'),
             ])->get($sso_api . '/api/validate-token');
         });
+        $responseMap = (array) json_decode($response->body());
         if (!$response->ok()) {
             Cache::forget('verifyToken_'.$token);
             return response()->json(['error' => 'Unauthorized'], 401);
-        } else if (!$response->body('data')) {
+        } else if (empty($responseMap['data'])) {
             return response()->json(['error' => 'Not Found'], 404);
         }
 
