@@ -29,9 +29,9 @@ class VerifyBearerToken
         if (!isset($token) || !isset($email)) {
             return response()->json(['error' => 'Bad Request'], 400);
         }
-        $response = Cache::remember('verifyToken_'.$token, 900, function () use ($token, $sso_api) {
+        $response = Cache::remember('verifyToken_'.$token, 900, function () use ($token, $sso_api, $request) {
             return Http::withToken($token)->withHeaders([
-                'X-VRDRUM-USER' => $email,
+                'X-VRDRUM-USER' => $request->header('X-VRDRUM-USER'),
                 'Request-Timeout' => $request->header('Request-Timeout'),
             ])->get($sso_api . '/api/validate-token');
         });
