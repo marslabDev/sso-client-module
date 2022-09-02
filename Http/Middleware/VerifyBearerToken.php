@@ -5,7 +5,6 @@ namespace Modules\SsoClient\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-use Modules\SsoClient\Entities\User;
 use Illuminate\Support\Facades\Cache;
 
 class VerifyBearerToken
@@ -30,17 +29,17 @@ class VerifyBearerToken
         if (!isset($token) || !isset($email)) {
             return response()->json(['error' => 'Bad Request'], 400);
         }
-
-        $user = User::where('email', $email)->first();
-        if (!$user) {
-            return response()->json(['error' => 'Not Found'], 404);
-        }
-        $response = Cache::remember('verifyToken_'.$$token, 900, function () use ($token, $sso_api, $user) {
-            return Http::withToken($token)->get($sso_api . '/api/v1/users/' . $user->id);
+        $response = Cache::remember('verifyToken_'.$token, 900, function () use ($token, $sso_api, $user) {
+            return Http::withToken($token)->withHeaders([
+                'X-VRDRUM-USER' => $email,
+                'Request-Timeout' => $request->header('Request-Timeout'),
+            ])->get($sso_api . '/api/validate-token');
         });
         if (!$response->ok()) {
             Cache::forget('verifyToken_'.$token);
             return response()->json(['error' => 'Unauthorized'], 401);
+        } else if (!$response->body('data')) {
+            return response()->json(['error' => 'Not Found'], 404);
         }
 
         return $next($request);
