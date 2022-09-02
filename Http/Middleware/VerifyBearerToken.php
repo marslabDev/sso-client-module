@@ -29,19 +29,27 @@ class VerifyBearerToken
         if (!isset($token) || !isset($email)) {
             return response()->json(['error' => 'Bad Request'], 400);
         }
-        $response = Cache::remember('verifyToken_'.$token, 900, function () use ($token, $sso_api, $request) {
-            return Http::withToken($token)->withHeaders([
-                'X-VRDRUM-USER' => $request->header('X-VRDRUM-USER'),
-                'Request-Timeout' => $request->header('Request-Timeout'),
-            ])->get($sso_api . '/api/validate-token');
-        });
+        if (Cache::has('verifyToken_'.$token)) {
+            $response = Cache::get('verifyToken_'.$token);
+        } else {
+            $response = Http::withToken($token)->withHeaders([
+                    'X-VRDRUM-USER' => $request->header('X-VRDRUM-USER'),
+                    'Request-Timeout' => $request->header('Request-Timeout'),
+                ])->get($sso_api . '/api/validate-token');
+        }
         $responseMap = (array) json_decode($response?->body());
         if (!$response?->ok()) {
-            Cache::forget('verifyToken_'.$token);
+            if (Cache::has('verifyToken_'.$token)) {
+                Cache::forget('verifyToken_'.$token);
+            }
             $message = $response?->body('message') ?? 'Unauthorized';
             return response()->json(['error' => $message], 401);
         } else if (empty($responseMap['data'])) {
             return response()->json(['error' => 'Not Found'], 404);
+        } else ($response?->ok()) {
+            Cache::remember('verifyToken_'.$token, 900, function () use ($response) {
+               return $response;
+            });
         }
 
         return $next($request);
