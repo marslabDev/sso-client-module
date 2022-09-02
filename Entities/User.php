@@ -31,7 +31,7 @@ class User extends Authenticatable
 
     protected $hidden = [
         'remember_token', 'two_factor_code',
-        'password',
+        // 'password',
     ];
 
     protected $dates = [
