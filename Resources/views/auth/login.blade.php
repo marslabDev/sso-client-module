@@ -49,7 +49,7 @@
                         <div class="row mt-4">
                             <div class="col-6 input-group mb-4">
                                 <div class="form-check checkbox">
-                                    <input class="form-check-input" name="remember" type="checkbox" id="remember" style="vertical-align: middle;" />
+                                    <input class="form-check-input" name="remember" type="checkbox" style="vertical-align: middle;" />
                                     <label class="form-check-label mt-1" for="remember" style="vertical-align: middle;">
                                         {{ trans('global.remember_me') }}
                                     </label>
@@ -67,7 +67,7 @@
                     <div class="web_pass">
                         <div class="col-lg-10 input-group mb-4">
                             <div class="form-check checkbox">
-                                <input class="form-check-input" name="remember" type="checkbox" id="remember" style="vertical-align: middle;" />
+                                <input class="form-check-input" name="remember" type="checkbox" style="vertical-align: middle;" />
                                 <label class="form-check-label mt-1" for="remember" style="vertical-align: middle;">
                                     {{ trans('global.remember_me') }}
                                 </label>
