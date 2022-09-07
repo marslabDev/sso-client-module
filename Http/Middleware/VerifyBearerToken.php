@@ -53,7 +53,7 @@ class VerifyBearerToken
             $message = $response?->body('message') ?? 'Unauthorized';
             return response()->json(['error' => $message], 401);
         } else if (empty($responseMap['data'])) {
-            return response()->json(['error' => 'Not Found'], 404);
+            return response()->json(['error' => 'Token invalid or mismatch.'], 401);
         } else if ($response?->ok()) {
             Cache::remember('verifyToken_'.$token, 900, function () use ($response) {
                return $response;
